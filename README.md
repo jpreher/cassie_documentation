@@ -1,5 +1,21 @@
-# cassie_documentation
-Central repository for operational instructions and installation scripts.
+# The Caltech Cassie Documentation Repository
+This serves as the central repository for the publicly released operational instructions and installation scripts for the Caltech Cassie biped project. If you use our code, please throw us a citation or acknowledgement (relevant papers listed below).
+
+Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done.
+
+*Note: This current release is organized around a C++ implementation for modeling and control of dynamic crouching motions. A MATLAB, Simulink, and C++ implementation of our walking controller, along with an example of the associated trajectory optimization is expected to be released sometime summer 2020.*
+
+## Description of associated repositories:
+
+
+
+## Setting up a computer for using the packages:
+
+### Development computer
+
+### Intel NUC on Cassie
+
+
 
 
 ## Related literature:
