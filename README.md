@@ -17,7 +17,7 @@ Central repository for operational instructions and installation scripts.
 ```
 @inproceedings{reher2019dynamic,
   title={Dynamic walking with compliance on a {Cassie} bipedal robot},
-  author={Reher, Jacob and Ma, Wen-Loong and Ames, Aaron D},
+  author={Reher, Jenna and Ma, Wen-Loong and Ames, Aaron D},
   booktitle={2019 18th European Control Conference (ECC)},
   pages={2589--2595},
   year={2019},
