@@ -6,8 +6,14 @@ Review the documentation here thoroughly before pulling our other repos and tryi
 *Note: This current release is organized around a C++ implementation for modeling and control of dynamic crouching motions. A MATLAB, Simulink, and C++ implementation of our walking controller, along with an example of the associated trajectory optimization is expected to be released sometime summer 2020.*
 
 ## Description of associated repositories:
+Below is a list of all packages used for the Caltech controller implementation. A general installation procedure is detailed lower in this README. For package specific instructions if you are looking to modify the code, please see the instructions in each repo.
 
-
+* [Amber Developer Stack](https://github.com/jpreher/amber_developer_stack): This is a set of general base utilities. These are primarily focused on debugging, wrappers for various things such as YAML, Eigen, and qpOASES, and general utilities which are not necessarily Cassie specific.
+* [Cassie Description](https://github.com/jpreher/cassie_description): Contains all necessary files for running the MATLAB codegen for the Cassie model. It also has classes for MATLAB and for C++ with several general functions to compute the constraints, dynamics, and kinematics efficiently.
+* [Cassie Common Toolbox](https://github.com/jpreher/cassie_common_toolbox): This is a common set of utilities and helper functions that are specific to Cassie.
+* [Cassie Interface](https://github.com/jpreher/cassie_interface): Contains the launch files for starting up the various processes. Also has the primary ROS node, which interfaces to the Simulink xPC via UDP and listens for control inputs to pass along.
+* [Cassie Estimation](https://github.com/jpreher/cassie_estimation): Contains functionality for estimating the heelspring deflections, contacts, and linear velocity.
+* [Cassie Controllers](https://github.com/jpreher/cassie_controllers): The main control code which chooses the torques to send to the robot.
 
 ## Setting up a computer for using the packages:
 This section will first detail the setup of a fresh Intel NUC computer, assuming that it has not yet been used. If you have already established your NUC, feel free to follow along with the instructions, and see if there are any additional steps that would be helpful to implement. If you are looking to just run the controller on a Linux computer in simulation or for development, you can skip the Intel NUC on Cassie section, and start with the Development Computer section.
