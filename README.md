@@ -55,9 +55,10 @@ Create a separate install space for third party repositories we are going to ins
 mkdir ~/repos
 cd ~/repos
 git clone https://github.com/rbdl/rbdl.git
+sed -i 's/boost::shared_ptr/std::shared_ptr/g' ~/repos/rbdl/addons/urdfreader/urdfreader.cc'
 mkdir ~/repos/rbdl/build
 cd ~/repos/rbdl/build
-cmake -D CMAKE_BUILD_TYPE=Release -D RBDL_BUILD_ADDON_URDFREADER=true  -D RBDL_USE_ROS_URDF_LIBRARY=false ../
+cmake -D CMAKE_BUILD_TYPE=Release -D RBDL_BUILD_ADDON_URDFREADER=true ../
 make
 sudo make install
 ```
@@ -86,6 +87,25 @@ Then simply build the workspace in Release mode, there should be no errors.
 cd ~/cassie_ws
 catkin_make -D CMAKE_BUILD_TYPE=Release
 ```
+
+
+## Running the software
+
+The software is launched from two roslaunch files, one for simulation and the other for hardware. 
+``` bash
+roslaunch cassie_interface cassie_interface_simulated.launch
+roslaunch cassie_interface cassie_interface_hardware.launch
+```
+
+On hardware this will initialize all control and estimation parameters, as well as boot up the controller node. In simulation this will spawn a Gazebo instance, and link the plugin with our interface node. The controller must be started in a separate terminal window via
+``` bash
+rosrun cassie_controllers locmotion_node
+```
+You can also simply modify the launch files to run, or not run the various nodes on launch. This is mainly if you would prefer to have more granular control over what gets started when, or when debugging.
+
+The Gazebo instance will start paused, you can start the simulation by clicking play on the bottom bar. The simulation will then lower Cassie, and then let go of the pelvis entirely. The controller will then simply run the optimization based crouching controller presented presented in our literature below.
+
+If you see `Error in REST request` when launching the Gazebo simulation, simply open the file `~/.ignition/fuel/config.yaml` and change `url: https://api.ignitionfuel.org` to `url: https://api.ignitionrobotics.org`.
 
 
 ## Related literature:
