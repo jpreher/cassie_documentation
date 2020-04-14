@@ -40,9 +40,15 @@ The packages are built around a ROS framework, we recommend following the instru
 
 and then install several necessary packages
 ``` bash
-sudo apt install libeigen3-dev libyaml-dev build-essential
+sudo apt install libeigen3-dev libyaml-dev build-essential ros-melodic-gazebo-ros
 ```
 
+If you plan to run Gazebo simulations, you will also need to add the following lines to the `.bashrc` or `.bash_aliases` file to ensure that it can find the associated model and plugin.
+``` bash
+export GAZEBO_PLUGIN_PATH=${HOME}/cassie_ws/devel/lib/:$GAZEBO_PLUGIN_PATH
+export GAZEBO_MODEL_PATH=${HOME}/cassie_ws/src/cassie_description/:$GAZEBO_MODEL_PATH
+```
+If you open another terminal before finishing the instructions below then you will see an error when it executes the command. After building `cassie_ws` they should go away.
 
 Create a separate install space for third party repositories we are going to install, and install the [RBDL](https://rbdl.github.io/) package with the optional URDF parser
 ``` bash
@@ -73,8 +79,13 @@ git clone https://github.com/jpreher/cassie_common_toolbox.git
 git clone https://github.com/jpreher/amber_developer_stack.git
 ```
 
-Before building, the model source code needs to either be generated or downloaded and extracted. We detail instructions for populating the code in the `cassie_description` package in the [associated README](https://github.com/jpreher/cassie_description/blob/master/README.md).
+Before building, the Cassie model source code needs to either be generated or downloaded and extracted. We detail instructions for populating the code in the `cassie_description` package in the [associated README](https://github.com/jpreher/cassie_description/blob/master/README.md). *Note: If you don't have access to Matlab and Mathematica, or are not interested in modifying the expressions, you can just [download an archive here](https://www.dropbox.com/s/ff3dfvctna8amwy/cassie_description_pregen.zip?dl=0) and extract it into the `cassie_description` folder.*
 
+Then simply build the workspace in Release mode, there should be no errors.
+``` bash
+cd ~/cassie_ws
+catkin_make -D CMAKE_BUILD_TYPE=Release
+```
 
 
 ## Related literature:
