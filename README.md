@@ -36,16 +36,44 @@ If you have not been working on the NUC already, the minimal installation is lik
 
 ### Development Computer
 
+The packages are built around a ROS framework, we recommend following the instructions for installing the Desktop version of [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu) if you used Ubuntu 18.04, or if using an older version using [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu). *Note: We have only tested on hardware with Melodic, however, there does not appear to be any compatability issues in simulation for Kinetic.*
+
+and then install several necessary packages
+``` bash
+sudo apt install libeigen3-dev libyaml-dev build-essential
+```
+
+
+Create a separate install space for third party repositories we are going to install, and install the [RBDL](https://rbdl.github.io/) package with the optional URDF parser
+``` bash
+mkdir ~/repos
+cd ~/repos
+git clone https://github.com/rbdl/rbdl.git
+mkdir ~/repos/rbdl/build
+cd ~/repos/rbdl/build
+cmake -D CMAKE_BUILD_TYPE=Release -D RBDL_BUILD_ADDON_URDFREADER=true  -D RBDL_USE_ROS_URDF_LIBRARY=false ../
+make
+sudo make install
+```
+
+Create the catkin workspace where our code will live
 ``` bash
 mkdir ~/cassie_ws
 mkdir ~/cassie_ws/src
 cd ~/cassie_ws/src
 catkin_init_workspace
 ```
-We then clone all of the necessary packages
+then clone all of the necessary repositories
 ``` bash
-
+git clone https://github.com/jpreher/cassie_description.git
+git clone https://github.com/jpreher/cassie_interface.git
+git clone https://github.com/jpreher/cassie_controllers.git
+git clone https://github.com/jpreher/cassie_estimation.git
+git clone https://github.com/jpreher/cassie_common_toolbox.git
+git clone https://github.com/jpreher/amber_developer_stack.git
 ```
+
+Before building, the model source code needs to either be generated or downloaded and extracted. We detail instructions for populating the code in the `cassie_description` package in the [associated README](https://github.com/jpreher/cassie_description/blob/master/README.md).
 
 
 
