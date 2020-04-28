@@ -55,7 +55,7 @@ Create a separate install space for third party repositories we are going to ins
 mkdir ~/repos
 cd ~/repos
 git clone https://github.com/rbdl/rbdl.git
-sed -i 's/boost::shared_ptr/std::shared_ptr/g' ~/repos/rbdl/addons/urdfreader/urdfreader.cc'
+sed -i 's/boost::shared_ptr/std::shared_ptr/g' ~/repos/rbdl/addons/urdfreader/urdfreader.cc
 mkdir ~/repos/rbdl/build
 cd ~/repos/rbdl/build
 cmake -D CMAKE_BUILD_TYPE=Release -D RBDL_BUILD_ADDON_URDFREADER=true ../
