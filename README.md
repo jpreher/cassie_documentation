@@ -55,15 +55,12 @@ Create a separate install space for third party repositories we are going to ins
 mkdir ~/repos
 cd ~/repos
 git clone https://github.com/rbdl/rbdl.git
+sed -i 's/boost::shared_ptr/std::shared_ptr/g' ~/repos/rbdl/addons/urdfreader/urdfreader.cc # ONLY RUN THIS LINE IF USING UBUNTU 18.04
 mkdir ~/repos/rbdl/build
 cd ~/repos/rbdl/build
 cmake -D CMAKE_BUILD_TYPE=Release -D RBDL_BUILD_ADDON_URDFREADER=true ../
 make
 sudo make install
-```
-If you are in 16.04 or earlier versions of Ubunut then you can directly run the commands above. If using the recommended 18.04 version then, also replace `boost::shared_ptr` with `std::shared_ptr` after cloning the repository.
-``` bash
-sed -i 's/boost::shared_ptr/std::shared_ptr/g' ~/repos/rbdl/addons/urdfreader/urdfreader.cc
 ```
 
 Create the catkin workspace where our code will live
