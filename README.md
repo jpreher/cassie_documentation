@@ -62,6 +62,17 @@ cmake -D CMAKE_BUILD_TYPE=Release -D RBDL_BUILD_ADDON_URDFREADER=true ../
 make
 sudo make install
 ```
+If you are using Ubuntu 16.04 then you will need to install a newer version of Eigen (>3.3) than comes with ROS Kinetic *(i.e. you only need to do this if using 16.04)* - This is a temporary fix until a better solution is found for the Eigen 3.3 unsupported packages
+``` bash
+cd ~/repos
+curl https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz | tar -xz
+mkdir ~/repos/eigen-3.3.7/build
+cd ~/repos/eigen-3.3.7/build
+cmake ..
+sudo make install
+sed -i 's/Eigen\/EulerAngles/eigen3\/unsupported\/Eigen\/EulerAngles/g' ~/cassie_ws/src/cassie_common_toolbox/include/cassie_common_toolbox/geometry.hpp
+```
+
 
 Create the catkin workspace where our code will live
 ``` bash
