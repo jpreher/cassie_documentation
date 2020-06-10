@@ -36,11 +36,20 @@ If you have not been working on the NUC already, the minimal installation is lik
 
 ### Development Computer
 
-The packages are built around a ROS framework, we recommend following the instructions for installing the Desktop version of [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu) if you used Ubuntu 18.04, or if using an older version using [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu). *Note: We have only tested on hardware with Melodic, however, there does not appear to be any compatability issues in simulation for Kinetic.*
+The packages are built around a ROS framework, we recommend following the instructions for installing the Desktop version of [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu) if you used Ubuntu 18.04, or if using an older version using [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu). *Note: We have only tested on hardware with Melodic, however, there does not appear to be any compatability issues in simulation for Kinetic, you will just need to manually upgrade a few packages as shown below.*
 
 and then install several necessary packages
 ``` bash
 sudo apt install libeigen3-dev libyaml-dev build-essential ros-melodic-gazebo-ros
+```
+If you are using Kinetic, you will need to remove Gazebo7 and manually install Gazebo9
+``` bash
+sudo apt remove ros-kinetic-gazebo* gazebo*
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt update
+sudo apt install ros-kinetic-gazebo9-*
+sudo apt upgrade
 ```
 
 If you plan to run Gazebo simulations, you will also need to add the following lines to the `.bashrc` or `.bash_aliases` file to ensure that it can find the associated model and plugin.
