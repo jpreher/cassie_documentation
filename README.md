@@ -3,7 +3,7 @@ This serves as the central repository for the publicly released operational inst
 
 Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done.
 
-*Note: This current release is organized around a C++ implementation for modeling and control of dynamic crouching motions. A MATLAB, Simulink, and C++ implementation of our walking controller, along with an example of the associated trajectory optimization is expected to be released sometime summer 2020.*
+*Note: This current release is organized around a C++ implementation for modeling and control of dynamic crouching motions. A MATLAB, Simulink, and C++ implementation of our walking controller, along with an example of the associated trajectory optimization is expected to be release in the first week of November 2020.*
 
 ## Description of associated repositories:
 Below is a list of all packages used for the Caltech controller implementation. A general installation procedure is detailed lower in this README. For package specific instructions if you are looking to modify the code, please see the instructions in each repo.
@@ -32,6 +32,8 @@ sudo systemctl start gdm3.service
 If you have already installed or prefer lightdm, this would just be `sudo lightdm start`. As a side note, you can also work in multiple terminals simultaneously while in this mode. Simply press `CTRL+ALT+F(1-6)` and this will switch between six distinct terminals. You will see the current terminal `tty(1-6)` at the top of your screen.
 
 If you have not been working on the NUC already, the minimal installation is likely not running unnecessary background processes. However, if you have, you may want to disable all unncessessary boot and background processes which may interfere with the controller. We also recommend disabling bluetooth, and possibly the wifi after you have installed all packages (though we have not had any issues leaving the wifi connected). You will be able to tell that you are having timing issues is there are small 'pops' in the controller, or if you look at the timing data from the logger and see greater than 5-10% jitter in the loop frequency.
+
+As a final step, you should also install the [PREEMPT_RT kernel](https://rt.wiki.kernel.org/index.php/Main_Page). This will be useful for mitigating timing issues when we are later elevating our controller and interface nodes into real-time priority.
 
 
 ### Development Computer
@@ -129,17 +131,28 @@ If you see `Error in REST request` when launching the Gazebo simulation, simply 
 
 
 ## Related literature:
-* Reher, Jenna, Claudia Kann, and Aaron D. Ames. "An Inverse Dynamics Approach to Control Lyapunov Functions." arXiv preprint arXiv:1910.10824 (2019).
+* Reher, Jenna and Aaron D. Ames. "An Inverse Dynamics Approach to Control Lyapunov Functions." arXiv preprint arXiv:1910.10824 (2019).
 ```
-@article{reher2019inversedynamics,
-  title={An Inverse Dynamics Approach to Control {Lyapunov} Functions},
-  author={Reher, Jenna and Kann, Claudia and Ames, Aaron D},
-  journal={arXiv preprint arXiv:1910.10824},
-  year={2019}
+@inproceedings{reher2021inversedynamicswalking,
+  title={Inverse Dynamics Control of Compliant Hybrid Zero Dynamic Walking},
+  author={Reher, Jenna and Ames, Aaron D},
+  booktitle={Submitted to 2021 IEEE ICRA and Robotics and Automation Letters (RA-L)},
 }
 ```
 
-* Reher, Jenna, Wen-Loong Ma, and Aaron D. Ames. "Dynamic walking with compliance on a cassie bipedal robot." 2019 18th European Control Conference (ECC). IEEE, 2019.
+* Reher, Jenna, Claudia Kann, and Aaron D. Ames. "An Inverse Dynamics Approach to Control Lyapunov Functions." arXiv preprint arXiv:1910.10824 (2019).
+```
+@inproceedings{reher2020inversedynamics,
+  title={An inverse dynamics approach to control {Lyapunov} functions},
+  author={Reher, Jenna and Kann, Claudia and Ames, Aaron D},
+  booktitle={2020 American Control Conference (ACC)},
+  pages={2444--2451},
+  year={2020},
+  organization={IEEE}
+}
+```
+
+* Reher, Jenna, Claudia Kann, and Aaron D. Ames. "An inverse dynamics approach to control Lyapunov functions." 2020 American Control Conference (ACC). IEEE, 2020.
 ```
 @inproceedings{reher2019dynamic,
   title={Dynamic walking with compliance on a {Cassie} bipedal robot},
