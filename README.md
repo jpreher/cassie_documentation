@@ -131,7 +131,7 @@ If you see `Error in REST request` when launching the Gazebo simulation, simply 
 
 
 ## Related literature:
-* Reher, Jenna and Aaron D. Ames. "An Inverse Dynamics Approach to Control Lyapunov Functions." arXiv preprint arXiv:1910.10824 (2019).
+* Reher, Jenna and Aaron D. Ames. "Inverse Dynamics Control of Compliant Hybrid Zero Dynamic Walking." Submitted to 2021 IEEE ICRA and Robotics and Automation Letters (RA-L).
 ```
 @inproceedings{reher2021inversedynamicswalking,
   title={Inverse Dynamics Control of Compliant Hybrid Zero Dynamic Walking},
@@ -140,9 +140,9 @@ If you see `Error in REST request` when launching the Gazebo simulation, simply 
 }
 ```
 
-* Reher, Jenna, Claudia Kann, and Aaron D. Ames. "An Inverse Dynamics Approach to Control Lyapunov Functions." arXiv preprint arXiv:1910.10824 (2019).
+* Reher, Jenna, Claudia Kann, and Aaron D. Ames. "An inverse dynamics approach to control Lyapunov functions." 2020 American Control Conference (ACC). IEEE, 2020.
 ```
-@inproceedings{reher2020inversedynamics,
+@inproceedings{reher2020inverse,
   title={An inverse dynamics approach to control {Lyapunov} functions},
   author={Reher, Jenna and Kann, Claudia and Ames, Aaron D},
   booktitle={2020 American Control Conference (ACC)},
@@ -152,7 +152,7 @@ If you see `Error in REST request` when launching the Gazebo simulation, simply 
 }
 ```
 
-* Reher, Jenna, Claudia Kann, and Aaron D. Ames. "An inverse dynamics approach to control Lyapunov functions." 2020 American Control Conference (ACC). IEEE, 2020.
+* Reher, Jenna, Wen-Loong Ma, and Aaron D. Ames. "Dynamic walking with compliance on a Cassie bipedal robot." 2019 18th European Control Conference (ECC). IEEE, 2019.
 ```
 @inproceedings{reher2019dynamic,
   title={Dynamic walking with compliance on a {Cassie} bipedal robot},
