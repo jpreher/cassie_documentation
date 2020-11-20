@@ -3,7 +3,7 @@ This serves as the central repository for the publicly released operational inst
 
 Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done.
 
-*Note: This current release is organized around a C++ implementation for modeling and control of dynamic crouching motions. A MATLAB, Simulink, and C++ implementation of our walking controller, along with an example of the associated trajectory optimization is expected to be release in the first week of November 2020.*
+*Note: The C++ version of our walking controller has been released within the cassie_controllers repo. Our HZD trajectory optimization will be released soon.*
 
 ## Description of associated repositories:
 Below is a list of all packages used for the Caltech controller implementation. A general installation procedure is detailed lower in this README. For package specific instructions if you are looking to modify the code, please see the instructions in each repo.
@@ -109,6 +109,8 @@ Then simply build the workspace in Release mode, there should be no errors.
 cd ~/cassie_ws
 catkin_make -D CMAKE_BUILD_TYPE=Release
 ```
+
+*Note: For running individual simulations in Gazebo of the walking controllers and crouching controller there does not yet exist a simple flag or switch to determine the behavior that you would like. Instead, the corresponding behavior can be commanded to the simulation controller by manually changing a spoofed joystick value in [cassie_interface.cpp](https://github.com/jpreher/cassie_interface/blob/e9230be69e1300bea12b9643510c64d4795e582c/src/cassie_interface_node.cpp#L435)*
 
 
 ## Running the software
