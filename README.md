@@ -35,6 +35,8 @@ If you have not been working on the NUC already, the minimal installation is lik
 
 As a final step, you should also install the [PREEMPT_RT kernel](https://rt.wiki.kernel.org/index.php/Main_Page). This will be useful for mitigating timing issues when we are later elevating our controller and interface nodes into real-time priority.
 
+For the Simulink xPC, our code is built around using a UDP connection as Agility Robotics had built out some support for this functionality. You can simply go to their software page [here](https://github.com/agilityrobotics/cassie-doc/tree/master/Software) and use their `UdpRealTime` controller. We have specified the network address in [cassie_interface.cpp](https://github.com/jpreher/cassie_interface/blob/e9230be69e1300bea12b9643510c64d4795e582c/src/cassie_interface_node.cpp#L109), please ensure that this address matches what is in your compiled Simulink code as it is different from their default. Agility had a version which can be edited and compiled in their code examples folder.
+
 
 ### Development Computer
 
