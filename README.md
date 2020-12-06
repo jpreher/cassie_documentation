@@ -3,6 +3,10 @@ This serves as the central repository for the publicly released operational inst
 
 Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done.
 
+[<img src="https://www.jennareher.com/s/cassie_crouch_clf.gif" width="100%">](hthttps://youtu.be/bzCYE3DETMI)
+
+[<img src="https://www.jennareher.com/s/cassie_inverse_dynamics.gif" width="100%">](https://youtu.be/SvhjPZqSGFI)
+
 *Note: The C++ version of our walking controller has been released within the cassie_controllers repo. Our HZD trajectory optimization will be released soon.*
 
 ## Description of associated repositories:
