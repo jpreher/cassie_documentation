@@ -13,9 +13,9 @@ rootpath = pwd;
 
 %% Estimation
 if do_estimation
-    ndbge = 46;
+    ndbge = 48;
     fileID = fopen(strcat(rootpath, '/estimation_log.bin'));
-    raw = fread(fileID,'double');
+    raw = fread(fileID,'float');
     nlogse = floor(length(raw) / ndbge);
     
     te = zeros(1,nlogse);
@@ -26,6 +26,7 @@ if do_estimation
     enc = zeros(14,nlogse);
     denc = zeros(14,nlogse);
     ach = zeros(2,nlogse);
+    dach = zeros(2,nlogse);
     contact = zeros(2,nlogse);
     
     for i = 1:nlogse
@@ -41,7 +42,8 @@ if do_estimation
         enc(:,i)     = raw(j+14 : j+27);
         denc(:,i)    = raw(j+28 : j+41);
         ach(:,i)     = raw(j+42 : j+43);
-        contact(:,i) = raw(j+44 : j+45);
+        dach(:,i)    = raw(j+44 : j+45);
+        contact(:,i) = raw(j+46 : j+47);
     end
     t0 = te(1);
     te = te - te(1);
@@ -100,7 +102,7 @@ end
 if do_standing
     ndbgc = 59;
     fileID = fopen(strcat(rootpath, '/stand_log.bin'));
-    raw = fread(fileID,'double');
+    raw = fread(fileID,'float');
     nlogs = floor(length(raw) / ndbgc);
     
     tc = zeros(1,nlogs);
@@ -197,7 +199,7 @@ end
 if do_walking
     ndbgw = 81;
     fileID = fopen(strcat(rootpath, '/qp_walk_log.bin'));
-    raw = fread(fileID,'double');
+    raw = fread(fileID,'float');
     nlogsw = floor(length(raw) / ndbgw);
     
     tw    = zeros(1,nlogsw);
@@ -237,7 +239,7 @@ if do_walking
         v_a_w(:,i)   = raw(j+64 : j+65);
         avg_v_w(:,i) = raw(j+66 : j+67);
         raibert_w(:,i) = raw(j+68 : j+70);
-        uff_w(:,i)     = raw(j+71 : j+80);
+        uff_w(:,i) = raw(j+71 : j+80);
     end
     tw = tw - t0;
     dtw = gradient(tw);
