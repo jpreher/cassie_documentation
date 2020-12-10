@@ -13,7 +13,7 @@ rootpath = pwd;
 
 %% Estimation
 if do_estimation
-    ndbge = 48;
+    ndbge = 49;
     fileID = fopen(strcat(rootpath, '/estimation_log.bin'));
     raw = fread(fileID,'float');
     nlogse = floor(length(raw) / ndbge);
@@ -34,16 +34,19 @@ if do_estimation
         j = ndbge * (i-1) + 1;
         
         % Extract values into proper sizes
-        te(i)        = raw(j);
-        quat(:,i)    = raw(j+1 : j+4);
-        gyro(:,i)    = raw(j+5 : j+7);
-        accel(:,i)    = raw(j+8 : j+10);
-        v(:,i)       = raw(j+11 : j+13);
-        enc(:,i)     = raw(j+14 : j+27);
-        denc(:,i)    = raw(j+28 : j+41);
-        ach(:,i)     = raw(j+42 : j+43);
-        dach(:,i)    = raw(j+44 : j+45);
-        contact(:,i) = raw(j+46 : j+47);
+        tsec         = raw(j);
+        tnsec        = raw(j+1);
+        quat(:,i)    = raw(j+2 : j+5);
+        gyro(:,i)    = raw(j+6 : j+8);
+        accel(:,i)    = raw(j+9 : j+11);
+        v(:,i)       = raw(j+12 : j+14);
+        enc(:,i)     = raw(j+15 : j+28);
+        denc(:,i)    = raw(j+29 : j+42);
+        ach(:,i)     = raw(j+43 : j+44);
+        dach(:,i)    = raw(j+45 : j+46);
+        contact(:,i) = raw(j+47 : j+48);
+        
+        te(i) = tsec + tnsec;
     end
     t0 = te(1);
     te = te - te(1);
@@ -88,7 +91,7 @@ if do_estimation
     
     figure(506);
     plot(te, ach);
-    xlabel('Time (s)');
+    xlabel('Time (s)'); 
     ylabel('Ach defl (rad)');
     
     figure(507);
@@ -100,7 +103,7 @@ end
 
 %% Standing
 if do_standing
-    ndbgc = 59;
+    ndbgc = 60;
     fileID = fopen(strcat(rootpath, '/stand_log.bin'));
     raw = fread(fileID,'float');
     nlogs = floor(length(raw) / ndbgc);
@@ -121,16 +124,19 @@ if do_standing
         j = ndbgc * (i-1) + 1;
         
         % Extract values into proper sizes
-        tc(i)     = raw(j);
-        ya(:,i)   = raw(j+1 : j+6);
-        dya(:,i)  = raw(j+7 : j+12);
-        yd(:,i)   = raw(j+13 : j+18);
-        dyd(:,i)  = raw(j+19 : j+24);
-        d2yd(:,i) = raw(j+25 : j+30);
-        V(i)      = raw(j+31);
-        u(:,i)    = raw(j+32 : j+41);
-        F(:,i)    = raw(j+42 : j+57);
-        delta(i)  = raw(j+58);
+        tsec      = raw(j);
+        tnsec     = raw(j+1);
+        ya(:,i)   = raw(j+2 : j+7);
+        dya(:,i)  = raw(j+8 : j+13);
+        yd(:,i)   = raw(j+14 : j+19);
+        dyd(:,i)  = raw(j+20 : j+25);
+        d2yd(:,i) = raw(j+26 : j+31);
+        V(i)      = raw(j+32);
+        u(:,i)    = raw(j+33 : j+42);
+        F(:,i)    = raw(j+43 : j+58);
+        delta(i)  = raw(j+59);
+        
+        tc(i) = tsec + tnsec;
     end
     tc = tc - t0;
     dtc = gradient(tc);
@@ -197,7 +203,7 @@ end
 
 %% Walking
 if do_walking
-    ndbgw = 81;
+    ndbgw = 82;
     fileID = fopen(strcat(rootpath, '/qp_walk_log.bin'));
     raw = fread(fileID,'float');
     nlogsw = floor(length(raw) / ndbgw);
@@ -224,22 +230,25 @@ if do_walking
         j = ndbgw * (i-1) + 1;
         
         % Extract values into proper sizes
-        tw(i)        = raw(j);
-        tau(:,i)     = raw(j+1);
-        dtau(:,i)    = raw(j+2);
-        ya_w(:,i)    = raw(j+3 : j+11);
-        dya_w(:,i)   = raw(j+12 : j+20);
-        yd_w(:,i)    = raw(j+21 : j+29);
-        dyd_w(:,i)   = raw(j+30 : j+38);
-        V_w(:,i)     = raw(j+39);
-        u_w(:,i)     = raw(j+40 : j+49);
-        Fdes_w(:,i)  = raw(j+50 : j+60);
-        delta_w(:,i) = raw(j+61);
-        v_d_w(:,i)   = raw(j+62 : j+63);
-        v_a_w(:,i)   = raw(j+64 : j+65);
-        avg_v_w(:,i) = raw(j+66 : j+67);
-        raibert_w(:,i) = raw(j+68 : j+70);
-        uff_w(:,i) = raw(j+71 : j+80);
+        tsec         = raw(j);
+        tnsec        = raw(j+1);
+        tau(:,i)     = raw(j+2);
+        dtau(:,i)    = raw(j+3);
+        ya_w(:,i)    = raw(j+4 : j+12);
+        dya_w(:,i)   = raw(j+13 : j+21);
+        yd_w(:,i)    = raw(j+22 : j+30);
+        dyd_w(:,i)   = raw(j+31 : j+39);
+        V_w(:,i)     = raw(j+40);
+        u_w(:,i)     = raw(j+41 : j+50);
+        Fdes_w(:,i)  = raw(j+51 : j+61);
+        delta_w(:,i) = raw(j+62);
+        v_d_w(:,i)   = raw(j+63 : j+64);
+        v_a_w(:,i)   = raw(j+65 : j+66);
+        avg_v_w(:,i) = raw(j+67 : j+68);
+        raibert_w(:,i) = raw(j+69 : j+71);
+        uff_w(:,i) = raw(j+72 : j+81);
+        
+        tw(i) = tsec + tnsec;
     end
     tw = tw - t0;
     dtw = gradient(tw);
