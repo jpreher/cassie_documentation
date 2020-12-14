@@ -137,6 +137,8 @@ The Gazebo instance will start paused, you can start the simulation by clicking 
 
 If you see `Error in REST request` when launching the Gazebo simulation, simply open the file `~/.ignition/fuel/config.yaml` and change `url: https://api.ignitionfuel.org` to `url: https://api.ignitionrobotics.org`.
 
+I have provided a [script](https://github.com/jpreher/cassie_documentation/blob/master/MATLAB/read_experiment_binary.m) which can be used to plot the data logged from experiments. There are three data files which are produced if the [associated flag is set in the launchfile](https://github.com/jpreher/cassie_interface/blob/255acd667f8fc447c9666cc4327aeeab6340b44b/launch/cassie_interface_hardware.launch#L8): 1) estimation_log.bin (enabled through the flag log_estimation) - this logs almost all data which is passed in and out of the cassie_interface_node, covering kinematic data, and all values from the floating-base, spring, and contact estimators. 2) stand_log.bin (enabled through the flag log_controller) containing all control feedback data from the CLF-QP or ID standing controller. 3) qp_walk_log.bin (enabled through the flag log_controller) containing all control feedback data from the CLF-QP or ID walking controller.
+
 
 ## Related literature:
 * Reher, Jenna and Aaron D. Ames. "Inverse Dynamics Control of Compliant Hybrid Zero Dynamic Walking." Submitted to 2021 IEEE ICRA and Robotics and Automation Letters (RA-L).
