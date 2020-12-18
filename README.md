@@ -1,7 +1,7 @@
 # The Caltech Cassie Documentation Repository
 This serves as the central repository for the publicly released operational instructions and installation scripts for the Caltech Cassie biped project. If you use our code, please throw us a citation or acknowledgement (relevant papers listed below).
 
-Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done.
+Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done. If you are unsure of how to modify part of the existing code, or if the gains and controllers which are provided here are having problems, feel free to raise a issue here or reach out: jreher@caltech.edu.
 
 [<img src="https://www.jennareher.com/s/cassie_crouch_clf.gif" width="40%">](hthttps://youtu.be/bzCYE3DETMI) 
 
