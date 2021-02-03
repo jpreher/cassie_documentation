@@ -129,7 +129,7 @@ roslaunch cassie_interface cassie_interface_hardware.launch
 
 On hardware this will initialize all control and estimation parameters, as well as boot up the controller node. In simulation this will spawn a Gazebo instance, and link the plugin with our interface node. The controller must be started in a separate terminal window via
 ``` bash
-rosrun cassie_controllers locmotion_node
+rosrun cassie_controllers locomotion_node
 ```
 You can also simply modify the launch files to run, or not run the various nodes on launch. This is mainly if you would prefer to have more granular control over what gets started when, or when debugging.
 
