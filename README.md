@@ -44,7 +44,7 @@ For the Simulink xPC, our code is built around using a UDP connection as Agility
 
 ### Development Computer
 
-The packages are built around a ROS framework, we recommend following the instructions for installing the Desktop version of [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu) if you used Ubuntu 18.04, or if using an older version using [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu). *Note: We have only tested on hardware with Melodic, however, there does not appear to be any compatability issues in simulation for Kinetic, you will just need to manually upgrade a few packages as shown below.*
+The packages are built around a ROS framework, we recommend following the instructions for installing the Desktop-Full version of [ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu) if you used Ubuntu 18.04, or if using an older version using [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu). *Note: We have only tested on hardware with Melodic, however, there does not appear to be any compatability issues in simulation for Kinetic, you will just need to manually upgrade a few packages as shown below.*
 
 and then install several necessary packages
 ``` bash
@@ -113,7 +113,7 @@ Before building, the Cassie model source code needs to either be generated or do
 Then simply build the workspace in Release mode, there should be no errors.
 ``` bash
 cd ~/cassie_ws
-catkin_make -D CMAKE_BUILD_TYPE=Release
+catkin_make -DCMAKE_BUILD_TYPE=Release
 ```
 
 *Note: For running individual simulations in Gazebo of the walking controllers and crouching controller there does not yet exist a simple flag or switch to determine the behavior that you would like. Instead, the corresponding behavior can be commanded to the simulation controller by manually changing a spoofed joystick value in [cassie_interface.cpp](https://github.com/jpreher/cassie_interface/blob/e9230be69e1300bea12b9643510c64d4795e582c/src/cassie_interface_node.cpp#L435)*
