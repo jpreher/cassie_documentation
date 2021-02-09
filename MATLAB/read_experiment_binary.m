@@ -13,7 +13,7 @@ rootpath = pwd;
 
 %% Estimation
 if do_estimation
-    ndbge = 49;
+    ndbge = 51;
     fileID = fopen(strcat(rootpath, '/estimation_log.bin'));
     raw = fread(fileID,'float');
     nlogse = floor(length(raw) / ndbge);
@@ -28,6 +28,8 @@ if do_estimation
     ach = zeros(2,nlogse);
     dach = zeros(2,nlogse);
     contact = zeros(2,nlogse);
+    current = zeros(1,nlogse);
+    voltage = zeros(1,nlogse);
     
     for i = 1:nlogse
         % Index in array
@@ -45,6 +47,8 @@ if do_estimation
         ach(:,i)     = raw(j+43 : j+44);
         dach(:,i)    = raw(j+45 : j+46);
         contact(:,i) = raw(j+47 : j+48);
+        current(i)   = raw(j+49);
+        voltage(i)   = raw(j+50);
         
         te(i) = tsec + tnsec;
     end
@@ -99,6 +103,17 @@ if do_estimation
     xlabel('Time (s)');
     ylabel('Quaternion');
     
+    figure(508)
+    subplot(3,1,1);
+    plot(te, voltage);
+    ylabel('Voltage');
+    subplot(3,1,2);
+    plot(te,current);
+    ylabel('Current (A)');
+    subplot(3,1,3);
+    plot(te,current.*voltage);
+    ylabel('Power (W)');
+    xlabel('Time (s)');
 end
 
 %% Standing
