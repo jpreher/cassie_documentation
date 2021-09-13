@@ -127,6 +127,11 @@ roslaunch cassie_interface cassie_interface_simulated.launch
 roslaunch cassie_interface cassie_interface_hardware.launch
 ```
 
+There is currently a separate launchfile example for running the full locomotion QP controller (standing and walking). To run this instead of the inverse dynamics controller, simply use this launch command instead:
+``` bash
+roslaunch cassie_interface cassie_interface_walkqp_simulated.launch
+```
+
 On hardware this will initialize all control and estimation parameters, as well as boot up the controller node. In simulation this will spawn a Gazebo instance, and link the plugin with our interface node. The controller must be started in a separate terminal window via
 ``` bash
 rosrun cassie_controllers locomotion_node
