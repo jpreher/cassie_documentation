@@ -1,13 +1,13 @@
 # The Caltech Cassie Documentation Repository
 This serves as the central repository for the publicly released operational instructions and installation scripts for the Caltech Cassie biped project. If you use our code, please throw us a citation or acknowledgement (relevant papers listed below).
 
-Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done. If you are unsure of how to modify part of the existing code, or if the gains and controllers which are provided here are having problems, feel free to raise a issue here or reach out: jreher@caltech.edu.
+Review the documentation here thoroughly before pulling our other repos and trying to use them on your robot, we provide helpful instructions and examples for how to set up your Linux development computer for testing in Gazebo or to prepare the Intel NUC on the actual Cassie hardware as we have done. If you are unsure of how to modify part of the existing code, or if the gains and controllers which are provided here are having problems, feel free to raise a issue here or reach out: jenna.reher@gmail.com.
+
+__IMPORTANT: This code will not work on versions of Ubuntu 20.04 or newer! We strongly recommend Ubuntu 18.04 with ROS Melodic.__
 
 [<img src="https://www.jennareher.com/s/cassie_crouch_clf.gif" width="40%">](hthttps://youtu.be/bzCYE3DETMI) 
 
 [<img src="https://www.jennareher.com/s/cassie_inverse_dynamics.gif" width="40%">](https://youtu.be/SvhjPZqSGFI)
-
-*Note: The C++ version of our walking controller has been released within the cassie_controllers repo. Our HZD trajectory optimization will be released soon.*
 
 ## Description of associated repositories:
 Below is a list of all packages used for the Caltech controller implementation. A general installation procedure is detailed lower in this README. For package specific instructions if you are looking to modify the code, please see the instructions in each repo.
@@ -18,6 +18,7 @@ Below is a list of all packages used for the Caltech controller implementation. 
 * [Cassie Interface](https://github.com/jpreher/cassie_interface): Contains the launch files for starting up the various processes. Also has the primary ROS node, which interfaces to the Simulink xPC via UDP and listens for control inputs to pass along.
 * [Cassie Estimation](https://github.com/jpreher/cassie_estimation): Contains functionality for estimating the heelspring deflections, contacts, and linear velocity.
 * [Cassie Controllers](https://github.com/jpreher/cassie_controllers): The main control code which chooses the torques to send to the robot.
+* [Cassie Optimization](https://github.com/jpreher/cassie_opt): MATLAB-based trajectory optimization for obtaining compliant walking motion libraries.
 
 ## Setting up a computer for using the packages:
 This section will first detail the setup of a fresh Intel NUC computer, assuming that it has not yet been used. If you have already established your NUC, feel free to follow along with the instructions, and see if there are any additional steps that would be helpful to implement. If you are looking to just run the controller on a Linux computer in simulation or for development, you can skip the Intel NUC on Cassie section, and start with the Development Computer section.
